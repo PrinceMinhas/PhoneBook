@@ -1,1 +1,16 @@
-<p>This is the partial for view 1.</p>
+<div ng-app="myApp.view1" ng-controller="View1Ctrl">
+    <h1>My Phonebook</h1><br>
+    <br>
+    <h2>New Contact</h2><br>
+    Name<br> <input type="text" ng-model="fullName"><br>
+    Phone Number<br> <input type="text" ng-model="phoneNumber"><br>
+    <button type="button" ng-click="addContact()">Add Contact</button><br>
+    <h2>Contacts</h2>
+    <ul>
+        <li ng-repeat="x in names">
+            {{ x.name }}
+            <br>
+            {{ x.number }}
+        </li>
+    </ul>
+</div>
