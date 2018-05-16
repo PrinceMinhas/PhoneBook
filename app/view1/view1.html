@@ -1,16 +1,31 @@
+<link href="../css/bootstrap.min.css" rel="stylesheet">
 <div ng-app="myApp.view1" ng-controller="View1Ctrl">
-    <h1>My Phonebook</h1><br>
-    <br>
-    <h2>New Contact</h2><br>
-    Name<br> <input type="text" ng-model="fullName"><br>
-    Phone Number<br> <input type="text" ng-model="phoneNumber"><br>
-    <button type="button" ng-click="addContact()">Add Contact</button><br>
-    <h2>Contacts</h2>
-    <ul>
-        <li ng-repeat="x in names">
-            {{ x.name }}
-            <br>
-            {{ x.number }}
-        </li>
-    </ul>
+    <div class="container">
+        <div id="sAlert" style="display: none" class="alert alert-success" role="alert">
+            Contact Sucessfully Added
+        </div>
+        <h1>My Phonebook</h1><br>
+        <br>
+        <h2>New Contact</h2><br>
+        Name<br> <input type="text" ng-model="fullName"><br>
+        Phone Number<br> <input type="text" ng-model="phoneNumber"><br>
+        <br>
+        <button class="btn btn-primary" type="submit" ng-click="addContact()">Add Contact</button><br>
+        <br>
+        <h2>Contacts</h2>
+        <ul class="list-group">
+            <li class="list-group-item list-group-item-warning" ng-repeat="x in names | startFrom:currentPage*pageSize | limitTo:pageSize">
+                {{ x.name }}
+                <br>
+                {{ x.number }}
+            </li>
+        </ul>
+        <button class="btn btn-primary btn-sm" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+            Previous
+        </button>
+        {{currentPage+1}}/{{numberOfPages()}}
+        <button class="btn btn-primary btn-sm" ng-disabled="currentPage >= names.length/pageSize - 1" ng-click="currentPage=currentPage+1">
+            Next
+        </button>
+    </div>
 </div>
